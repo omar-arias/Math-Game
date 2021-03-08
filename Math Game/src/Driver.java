@@ -28,7 +28,7 @@ public class Driver {
 		input.close();
 	} // End main
 /**************************************************************************************
- * 
+ * This function generates the numbers to be used and executes the game.
  */
 	public static void playGame() 
 	{
@@ -63,8 +63,9 @@ public class Driver {
 
 	} // End playGame
 /****************************************************************************************	
- * 
- * @param numberArray
+ * This function determines the minimum and maximum numbers to be used depending on the
+ * chosen level.
+ * @param numberArray, This array holds the minimum and maximum values to be used.
  */
 	public static void getLevel (int numberArray [])
 	{
