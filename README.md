@@ -4,9 +4,9 @@ A simple addition math game
 < revisions / thoughts throughout project >
 
 * Created 3 difficulty levels
-    Level 1 uses numbers 1 - 10
-    Level 2 uses numbers 1 - 100
-    Level 3 uses numbers 1 - 1000
+    - Level 1 uses numbers 1 - 10
+    - Level 2 uses numbers 1 - 100
+    - Level 3 uses numbers 1 - 1000
     
 * Separated code for playing the game from main and created a new function, playGame(min, max)
     The function takes in the minimun and maximum numbers of a level as parameters.
