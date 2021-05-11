@@ -35,11 +35,16 @@ public class Driver {
 		
 		int min;
 		int max;
-		int answer;
+		int answer = 000;
 		int number1;
 		int number2;
 		int response;
 		int [] numberArray = new int [2];
+		String gameType;
+		
+		System.out.println("Type + for adition or - for subtraction");
+		gameType = input.next();
+		
 		
 		getLevel(numberArray);
 		
@@ -48,10 +53,28 @@ public class Driver {
 
 		number1 = (int) (Math.random() * (max - min + 1) + min);
 		number2 = (int) (Math.random() * (max - min + 1) + min);
-		answer = number1 + number2;
+		
+		if (gameType.equals("-"))
+		{
+			while (number1 < number2)
+			{
+				number2 = (int) (Math.random() * (max - min + 1) + min);
+			}
+			
+			answer = number1 - number2;
+		}
+		
+		else
+		{
+			answer = number1 + number2;
+		}
+		
+		
+		
+		
 
 		System.out.println("Solve");
-		System.out.println(number1 + " + " + number2 + " =");
+		System.out.println(number1 + " " + gameType + " " + number2 + " =");
 		response = input.nextInt();
 
 		if (response == answer) 
