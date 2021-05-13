@@ -21,4 +21,4 @@ A simple addition & subtraction math game
 
 * Added subtraction as a playing opption.
 
-*Added exception handling throughout. 
+* Added exception handling throughout. 
