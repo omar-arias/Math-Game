@@ -4,6 +4,7 @@
  * A simple addition game
  */
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Driver {
@@ -13,18 +14,38 @@ public class Driver {
 	public static void main(String[] args) {
 		input = new Scanner(System.in);
 
-		char keepPlaying;
+		String keepPlaying;
+		String yes = "y";
+		String no = "n";
+		
 		
 		do
 		{
+			boolean playInput = false;
+			
 			playGame();
 			
-			System.out.println("\nWould you like to keep playing? Type:( y or n )");
-			keepPlaying = input.next().charAt(0);
+			do
+			{
+				System.out.println("\nWould you like to keep playing? Type:( y or n )\n");
+				keepPlaying = input.next();
+				
+				if (keepPlaying.equalsIgnoreCase(yes) || keepPlaying.equalsIgnoreCase(no))
+				{
+					playInput = true;
+				}
+				else
+				{
+					System.out.println("\nInvalid input, please try again.\n");
+				}
+				
+			}while(playInput == false);
 			
-		}while(keepPlaying == 'y');
+			System.out.println("");
+			
+		}while(keepPlaying.equalsIgnoreCase(yes));
 	
-		System.out.println("\nThanks for playing see you next time!");
+		System.out.println("Thanks for playing see you next time!");
 		input.close();
 	} // End main
 /**************************************************************************************
@@ -35,16 +56,41 @@ public class Driver {
 		
 		int min;
 		int max;
-		int answer = 000;
+		int answer = -1;
 		int number1;
 		int number2;
-		int response;
+		int response = -1;
 		int [] numberArray = new int [2];
-		String gameType;
+		String gameType = null;
+		boolean validInput = false;
+		String negative = "-";
+		String positive = "+";
+		boolean validAnswer = false;
 		
-		System.out.println("Type + for adition or - for subtraction");
-		gameType = input.next();
-		
+	
+		do
+		{
+			try
+			{
+				System.out.println("What type of math problems would you like to solve?");
+				System.out.println("Type + for adition or - for subtraction\n");
+				gameType = input.next();
+				
+				if(gameType.equals(negative) || gameType.equals(positive)) 
+				{
+					validInput = true;
+				}
+				else
+				{
+					throw new Exception("\nIncorrect input, try again\n");
+				}
+			}
+			catch (Exception ex)
+			{
+				System.out.println(ex.getMessage());
+			}
+			
+		}while (validInput == false);
 		
 		getLevel(numberArray);
 		
@@ -54,34 +100,44 @@ public class Driver {
 		number1 = (int) (Math.random() * (max - min + 1) + min);
 		number2 = (int) (Math.random() * (max - min + 1) + min);
 		
-		if (gameType.equals("-"))
+		if (gameType.equals(negative))	
 		{
-			while (number1 < number2)
+			while (number1 < number2)	// Used to make sure answer is never negative
 			{
 				number2 = (int) (Math.random() * (max - min + 1) + min);
 			}
 			
-			answer = number1 - number2;
+			answer = number1 - number2;	// Generates subtraction problem
 		}
 		
 		else
 		{
-			answer = number1 + number2;
+			answer = number1 + number2;	// Generates addition problem
 		}
 		
-		
-		
-		
-
-		System.out.println("Solve");
-		System.out.println(number1 + " " + gameType + " " + number2 + " =");
-		response = input.nextInt();
+		do
+		{
+			try
+			{
+				System.out.println("\nSolve\n");
+				System.out.println(number1 + " " + gameType + " " + number2 + " =");
+				response = input.nextInt();
+				
+				validAnswer = true;
+			}
+			catch(InputMismatchException ex)
+			{
+				System.out.println("Oops! Please enter a number.");
+				input.nextLine();
+			}
+			
+		}while (validAnswer == false);
 
 		if (response == answer) 
 		{
-			System.out.println("Well done, thats correct!");
+			System.out.println("\nWell done, thats correct!");
 		} else 
-			System.out.println("Oops! The correct answer is " + answer);
+			System.out.println("\nOops! The correct answer is " + answer);
 		
 
 	} // End playGame
@@ -93,13 +149,38 @@ public class Driver {
 	public static void getLevel (int numberArray [])
 	{
 		
-		int level;
+		int level = 0;
 		int min = 0;
 		int max = 0;
+		boolean validInput = false;
 		
-		System.out.println("Select a level");
-		System.out.println("Level 1 , 2 or 3?");
-		level = input.nextInt();
+		
+		do
+		{
+			try
+			{
+				System.out.println("\nSelect a level");
+				System.out.println("Level 1 , 2 or 3?\n");
+				level = input.nextInt();
+				
+				if(level == 1 || level == 2 || level == 3)
+				{
+					validInput = true;
+				}
+				else
+				{
+					System.out.println("\nInvalid input, try again");
+				}
+			}
+
+			catch(InputMismatchException ex)
+			{
+				System.out.println("\nInvalid input, try again");
+				input.nextLine();
+			
+			}
+			
+		}while(validInput == false);
 
 		if (level == 1) // numbers 0 - 10
 		{
