@@ -1,5 +1,5 @@
 # Math-Game
-A simple addition math game
+A simple addition & subtraction math game
 
 < revisions / thoughts throughout project >
 
@@ -18,3 +18,7 @@ A simple addition math game
       for the specified level to be played.
    The function playGame() no longer takes in parameters.
    Changed while loop in main to a do while loop.
+
+* Added subtraction as a playing opption.
+
+*Added exception handling throughout. 
